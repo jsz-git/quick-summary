@@ -388,16 +388,21 @@ fn main() {
     // 解析快捷键
     let (modifiers, key_code) = parse_shortcut(&configured_hotkey);
 
-    // 检查并启动 API 服务器
+    // 检查并启动 API 服务器（使用嵌入的可执行文件）
     let check = Command::new("curl")
         .arg("-s")
         .arg("http://localhost:5000/api/notes")
         .output();
 
     if check.is_err() || !check.unwrap().status.success() {
-        let _child = Command::new("python3")
-            .arg("api_server.py")
-            .current_dir(base_dir)
+        // 获取应用资源目录中的可执行文件路径
+        let api_server_path = std::env::current_exe()
+            .unwrap()
+            .parent()
+            .unwrap()
+            .join("binaries/quick-summary-api");
+
+        let _child = Command::new(api_server_path)
             .spawn();
         std::thread::sleep(std::time::Duration::from_secs(3));
     }
@@ -446,11 +451,15 @@ fn main() {
                 // 等待复制完成
                 std::thread::sleep(std::time::Duration::from_millis(200));
 
-                // 3. 执行总结
-                let output = Command::new("python3")
-                    .arg("src/main.py")
+                // 3. 执行总结（使用嵌入的可执行文件）
+                let summarize_path = std::env::current_exe()
+                    .unwrap()
+                    .parent()
+                    .unwrap()
+                    .join("binaries/quick-summary");
+
+                let output = Command::new(summarize_path)
                     .arg("--once")
-                    .current_dir("/Users/jszpc/Desktop/快捷总结笔记")
                     .output();
 
                 match output {
