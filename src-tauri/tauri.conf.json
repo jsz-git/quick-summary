@@ -1,0 +1,40 @@
+{
+  "productName": "快捷总结笔记",
+  "version": "1.1.0",
+  "identifier": "com.quicksummary.desktop",
+  "build": {
+    "beforeBuildCommand": "",
+    "beforeDevCommand": "",
+    "frontendDist": "../ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "main",
+        "title": "快捷总结笔记",
+        "width": 1000,
+        "height": 700,
+        "resizable": true,
+        "fullscreen": false,
+        "minWidth": 800,
+        "minHeight": 600
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app"],
+    "shortDescription": "AI对话总结工具",
+    "longDescription": "通过AI自动总结对话内容，支持多种模型",
+    "category": "Productivity"
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    }
+  }
+}

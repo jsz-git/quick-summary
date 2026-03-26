@@ -1,0 +1,14 @@
+{
+  "name": "session-summary-tool",
+  "version": "1.0.0",
+  "description": "轻量级会话总结工具 - 通过快捷键触发AI对话总结",
+  "main": "src/main.py",
+  "scripts": {
+    "start": "python3 src/main.py",
+    "test": "python3 tests/test_basic.py",
+    "install-deps": "pip3 install -r requirements.txt"
+  },
+  "keywords": ["session-summary", "ai-tools", "clipboard", "productivity"],
+  "author": "",
+  "license": "MIT"
+}

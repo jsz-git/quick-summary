@@ -1,0 +1,6 @@
+ai_model: deepseek-chat
+ai_provider: deepseek
+auto_select: true
+auto_select_lines: 50
+auto_select_method: all
+hotkey: f2
